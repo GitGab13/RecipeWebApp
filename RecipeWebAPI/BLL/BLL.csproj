@@ -9,10 +9,12 @@
   <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="DTOs\" />
+    <Folder Include="DTOs\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DLL.csproj" />
+    <ProjectReference Include="..\DAL\DAL.csproj" />
   </ItemGroup>
 
 </Project>
