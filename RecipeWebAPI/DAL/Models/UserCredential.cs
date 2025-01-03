@@ -8,23 +8,24 @@ using System.Threading.Tasks;
 
 namespace DAL.Models
 {
-    public class User
+    public class UserCredential
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int UserCredentialID { get; set; }
+
         public int UserID { get; set; }
+        public string Username { get; set; }
 
-        public required string DisplayName { get; set; }
-
-        public required string Country { get; set; }
-
-        public string? Email { get; set; }
+        public string Password { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DataType(DataType.DateTime)]
         [Column(TypeName = "datetime2")]
         public DateTime CreatedAt { get; set; }
 
-        public ICollection<UserCredential> UserCredentials { get; set; }
+        [ForeignKey("UserID")]
+        public User User { get; set; }
+
     }
 }

@@ -102,23 +102,24 @@ namespace DAL.Repositories.Implementations
         {
             try
             {
-                User originalUser = await _users.FindAsync(entity.Id);
+                User originalUser = await _users.FindAsync(entity.UserID);
                 if (originalUser != null)
                 {
-                    originalUser.FirstName = entity.FirstName;
-                    originalUser.LastName = entity.LastName;
+                    originalUser.DisplayName = entity.DisplayName;
+                    originalUser.Country = entity.Country;
+                    originalUser.Email = entity.Email;
                     _context.Update(entity);
                     return true;
                 }
                 else
                 {
-                    _logger.LogWarning("Error updating user not found with ID: {Id}", entity.Id);
+                    _logger.LogWarning("Error updating user not found with ID: {Id}", entity.UserID);
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error updating user with ID: {Id}", entity.Id);
+                _logger.LogError(ex, "Error updating user with ID: {Id}", entity.UserID);
                 throw;
             }
         }

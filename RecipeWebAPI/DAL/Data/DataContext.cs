@@ -16,5 +16,20 @@ namespace DAL.Data
         }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
+
+        public DbSet<UserCredential> UserCredentials { get; set; }
+
+        public DbSet<UserRole> UserRoles { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //Added for composite key in UserRole table
+            modelBuilder.Entity<UserRole>()
+                .HasKey(ur => new { ur.RoleID, ur.UserID });
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
